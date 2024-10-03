@@ -64,10 +64,13 @@ const MessageContainer = styled.div`
 `;
 
 const MessageCard = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 0.5rem 0; // Vertical margin
+  flex: 1;
+  margin: 0 1rem;
+
+  @media (max-width: 768px) {
+    width: 90%; // Use a percentage for smaller screens
+    margin: 1rem 0; // Add vertical margin
+  }
 `;
 
 const RSVPForm: React.FC = () => {
@@ -192,7 +195,7 @@ const RSVPForm: React.FC = () => {
 
       <MessageContainer>
         {messages.length > 0 && (
-          <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
+          <Slider dots={true} speed={500} slidesToShow={3} slidesToScroll={1}>
             {messages.map((msg, index) => (
               <MessageCard key={index}>
                 <strong>{msg.name}</strong>: {msg.message}
