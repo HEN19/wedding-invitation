@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React from 'react';
 import Header from './Header/Header';
 import InvitationDetails from './Invitation/InvitationsDetails';
