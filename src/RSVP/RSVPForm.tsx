@@ -1,14 +1,11 @@
+import { Carousel } from 'antd';
 import React, { useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 
 // Styled components for the forms
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap; // Allow wrapping for smaller screens
   justify-content: space-around;
   padding: 2rem;
 
@@ -60,18 +57,27 @@ const Button = styled.button`
 
 const MessageContainer = styled.div`
   margin-top: 2rem; // Space between the forms and the message section
-  width: 100%; // Ensure full width for message container
+  width: 60%; // Ensure full width for message container
+  flex : 1;
+  display: flex;
+  flex-direction: column;
+  background: blue,
+
 `;
 
 const MessageCard = styled.div`
-  flex: 1;
-  margin: 0 1rem;
-
+  height: 103px;
+  color: #fff;
+  textAlign: center;
+  background: #364d79;
   @media (max-width: 768px) {
     width: 90%; // Use a percentage for smaller screens
     margin: 1rem 0; // Add vertical margin
   }
+
+
 `;
+ 
 
 const RSVPForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -191,19 +197,19 @@ const RSVPForm: React.FC = () => {
           />
           <Button type="submit">Send Message</Button>
         </form>
-      </FormContainer>
 
-      <MessageContainer>
+        <MessageContainer>
         {messages.length > 0 && (
-          <Slider dots={true} speed={500} slidesToShow={3} slidesToScroll={1}>
+          <Carousel dotPosition='right' infinite={false} autoplay>
             {messages.map((msg, index) => (
               <MessageCard key={index}>
                 <strong>{msg.name}</strong>: {msg.message}
               </MessageCard>
             ))}
-          </Slider>
+          </Carousel>
         )}
       </MessageContainer>
+      </FormContainer>
     </Container>
   );
 };
